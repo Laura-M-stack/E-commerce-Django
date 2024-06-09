@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+
+{% block title %}Bienvenido {% endblock %}
+
+{% block content %}
+    <div class= "mt-6 px-6 py-12 bg-gray-100 rounded-xl bg-gradient-to-b from-sky-200 to-violet-300">
+        <h2 class= " py-3 text-center text-xl font-semibold bg-violet-500 text-white rounded-xl border border-solid
+         border-double border-8 border-sky-500">Nuevos items</h2><br>
+
+        <div class= "grid grid-cols-3 gap-3 space-evenly">
+            {% for item in items %}
+                <div>
+                    <a href="{% url "item:detalle" item.id %}">
+                        <div>
+                            <img src="{{item.imagen.url}}" class= "rounded-t-lg object-fill">
+                        </div>
+
+                        <div class= "p-6 bg-purple-200 rounded-b-lg">
+                           <h2 class= "text-sm">{{ item.name }}</h2>
+                           <p class="text-gray-500">Precio: {{item.precio}}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>    
+    </div>
+
+    <div class= "mt-6 px-6 py-12 bg-gray-100 rounded-xl bg-gradient-to-b from-sky-200 to-violet-300">
+        <h2 class= "py-3 mb-6 mt-0 text-center text-xl font-semibold bg-violet-500 text-white rounded-xl border border-solid 
+        border-double border-8 border-sky-500 ">Categorías</h2>
+
+        <div class= "grid grid-cols-3 gap-3">
+            {% for categoría in categorías %}
+            <div>
+                <a href="#">
+
+                    <div class= "shadow-lg shadow-gray-400 text-center text-white border border-2 border-double border-sky-500 border-solid p-6 bg-violet-400 rounded-lg">
+                       <h2 class= "text-sm">{{ categoría.name }}</h2>
+                       <p class="text-gray-500"> {{categoría.items.count}} items</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+{% endblock  %}
